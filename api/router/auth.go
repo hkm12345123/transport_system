@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lucthienbinh/golang_scem/api/middleware"
-	"github.com/lucthienbinh/golang_scem/internal/handler"
+	"github.com/hkm12345123/transport_system/api/middleware"
+	"github.com/hkm12345123/transport_system/internal/handler"
 	"gopkg.in/validator.v2"
 )
 

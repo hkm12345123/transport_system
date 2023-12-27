@@ -4,15 +4,15 @@ import (
 	"log"
 	"os"
 
+	"github.com/hkm12345123/transport_system/api/middleware"
+	"github.com/hkm12345123/transport_system/api/server"
+	"github.com/hkm12345123/transport_system/internal/handler"
+	CommonService "github.com/hkm12345123/transport_system/internal/service/common"
+	CommonMessage "github.com/hkm12345123/transport_system/internal/service/common_message"
+	ZBMessage "github.com/hkm12345123/transport_system/internal/service/zeebe/message"
+	ZBWorker "github.com/hkm12345123/transport_system/internal/service/zeebe/worker"
+	ZBWorkflow "github.com/hkm12345123/transport_system/internal/service/zeebe/workflow"
 	"github.com/joho/godotenv"
-	"github.com/lucthienbinh/golang_scem/api/middleware"
-	"github.com/lucthienbinh/golang_scem/api/server"
-	"github.com/lucthienbinh/golang_scem/internal/handler"
-	CommonService "github.com/lucthienbinh/golang_scem/internal/service/common"
-	CommonMessage "github.com/lucthienbinh/golang_scem/internal/service/common_message"
-	ZBMessage "github.com/lucthienbinh/golang_scem/internal/service/zeebe/message"
-	ZBWorker "github.com/lucthienbinh/golang_scem/internal/service/zeebe/worker"
-	ZBWorkflow "github.com/lucthienbinh/golang_scem/internal/service/zeebe/workflow"
 )
 
 func main() {
@@ -51,7 +51,10 @@ func main() {
 	CommonService.MappingGormDBConnection(gormDB)
 	CommonMessage.MappingGormDBConnection(gormDB)
 
-	// if err := handler.RefreshDatabase(); err != nil {
+	if err := handler.RefreshDatabase(); err != nil {
+		log.Println(err)
+		os.Exit(1)
+	}
 	if err := handler.MigrationDatabase(); err != nil {
 		log.Println(err)
 		os.Exit(1)

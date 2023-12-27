@@ -3,18 +3,19 @@ package worker
 import (
 	"context"
 	"log"
+	"os"
 
 	"github.com/camunda/zeebe/clients/go/v8/pkg/entities"
 	"github.com/camunda/zeebe/clients/go/v8/pkg/worker"
 	"github.com/camunda/zeebe/clients/go/v8/pkg/zbc"
 
-	CommonService "github.com/lucthienbinh/golang_scem/internal/service/common"
+	CommonService "github.com/hkm12345123/transport_system/internal/service/common"
 )
 
 // RunOrderLongShip to start this worker
 func RunOrderLongShip() {
 	client, err := zbc.NewClient(&zbc.ClientConfig{
-		GatewayAddress:         "127.0.0.1:26500",
+		GatewayAddress:         os.Getenv("BROKER_ADDRESS"),
 		UsePlaintextConnection: true,
 	})
 	if err != nil {

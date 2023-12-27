@@ -4,8 +4,8 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lucthienbinh/golang_scem/internal/handler"
-	ServiceCommon "github.com/lucthienbinh/golang_scem/internal/service/common"
+	"github.com/hkm12345123/transport_system/internal/handler"
+	ServiceCommon "github.com/hkm12345123/transport_system/internal/service/common"
 )
 
 // WebOrderShipRoutes to manage user model

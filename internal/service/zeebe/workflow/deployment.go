@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/camunda/zeebe/clients/go/v8/pkg/zbc"
-	"github.com/lucthienbinh/golang_scem/internal/model"
+	"github.com/hkm12345123/transport_system/internal/model"
 )
 
 var (

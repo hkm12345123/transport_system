@@ -7,8 +7,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/lucthienbinh/golang_scem/internal/model"
-	"github.com/lucthienbinh/golang_scem/internal/service/state_scem/pb"
+	"github.com/hkm12345123/transport_system/internal/model"
+	"github.com/hkm12345123/transport_system/internal/service/state_scem/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/encoding/protojson"
 )

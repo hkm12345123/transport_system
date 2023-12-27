@@ -4,10 +4,10 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/hkm12345123/transport_system/internal/model"
+	CommonService "github.com/hkm12345123/transport_system/internal/service/common"
+	CommonMessage "github.com/hkm12345123/transport_system/internal/service/common_message"
 	"github.com/gin-gonic/gin"
-	"github.com/lucthienbinh/golang_scem/internal/model"
-	CommonService "github.com/lucthienbinh/golang_scem/internal/service/common"
-	CommonMessage "github.com/lucthienbinh/golang_scem/internal/service/common_message"
 	"golang.org/x/sync/errgroup"
 	"gopkg.in/validator.v2"
 	"gorm.io/gorm"

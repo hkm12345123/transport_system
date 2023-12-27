@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	ZBMessage "github.com/lucthienbinh/golang_scem/internal/service/zeebe/message"
+	ZBMessage "github.com/hkm12345123/transport_system/internal/service/zeebe/message"
 )
 
 ///////////////////////////////////////// PUBLISH MESSAGE /////////////////////////////////////////

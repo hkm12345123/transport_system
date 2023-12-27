@@ -7,8 +7,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lucthienbinh/golang_scem/internal/model"
-	GorushClient "github.com/lucthienbinh/golang_scem/internal/service/gorush"
+	"github.com/hkm12345123/transport_system/internal/model"
+	GorushClient "github.com/hkm12345123/transport_system/internal/service/gorush"
 	"golang.org/x/sync/errgroup"
 	"gorm.io/gorm"
 )

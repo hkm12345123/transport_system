@@ -5,9 +5,9 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lucthienbinh/golang_scem/internal/model"
-	SSWorkflow "github.com/lucthienbinh/golang_scem/internal/service/state_scem/workflow"
-	ZBWorkflow "github.com/lucthienbinh/golang_scem/internal/service/zeebe/workflow"
+	"github.com/hkm12345123/transport_system/internal/model"
+	SSWorkflow "github.com/hkm12345123/transport_system/internal/service/state_scem/workflow"
+	ZBWorkflow "github.com/hkm12345123/transport_system/internal/service/zeebe/workflow"
 )
 
 ///////////////////////////////////////// CREATE INSTANCE /////////////////////////////////////////

@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/hkm12345123/transport_system/internal/model"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/lucthienbinh/golang_scem/internal/model"
 	"golang.org/x/sync/errgroup"
 	"gopkg.in/validator.v2"
 )

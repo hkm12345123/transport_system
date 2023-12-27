@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lucthienbinh/golang_scem/internal/handler"
+	"github.com/hkm12345123/transport_system/internal/handler"
 )
 
 // WebUserRoutes to manage user model

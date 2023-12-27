@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/lucthienbinh/golang_scem/internal/model"
+	"github.com/hkm12345123/transport_system/internal/model"
 	"github.com/skip2/go-qrcode"
 	"gorm.io/gorm"
 )

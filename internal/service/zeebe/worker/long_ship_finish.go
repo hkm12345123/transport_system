@@ -8,7 +8,7 @@ import (
 	"github.com/camunda/zeebe/clients/go/v8/pkg/entities"
 	"github.com/camunda/zeebe/clients/go/v8/pkg/worker"
 	"github.com/camunda/zeebe/clients/go/v8/pkg/zbc"
-	ZBMessage "github.com/lucthienbinh/golang_scem/internal/service/zeebe/message"
+	ZBMessage "github.com/hkm12345123/transport_system/internal/service/zeebe/message"
 )
 
 // RunLongShipFinish to start this worker

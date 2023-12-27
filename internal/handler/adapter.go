@@ -3,7 +3,7 @@ package handler
 import (
 	"os"
 
-	"github.com/lucthienbinh/golang_scem/internal/model"
+	"github.com/hkm12345123/transport_system/internal/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlite"

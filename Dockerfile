@@ -1,42 +1,52 @@
-FROM golang:1.15-alpine3.12 AS builder
+FROM golang:1.19.1-alpine3.16 AS builder
 
-# Set necessary environmet variables needed for our image
+# Set necessary environment variables needed for our image
 ENV GO111MODULE=on \
-    CGO_ENABLED=0 \
+    CGO_ENABLED=1 \
     GOOS=linux \
     GOARCH=amd64 \
     RUNENV=docker
 
-# Copy bpmn workflow 
+# Install gcc and related build tools
+RUN apk update && apk add --no-cache gcc libc-dev
+
+# Create necessary directories
 WORKDIR /storage/private/zeebe
 COPY ./storage/private/zeebe .
 
-# Copy sample picture and create folder
 WORKDIR /storage/private/images
 WORKDIR /storage/public/upload/images
 COPY ./storage/public/upload/images .
-
-# Move to working directory /build
+WORKDIR /db
+COPY ./db .
+# Copy only go.mod and go.sum to download dependencies when they change
 WORKDIR /build
+COPY go.mod .
+COPY go.sum .
+
+# Download dependencies only if go.mod or go.sum changed
+RUN go mod download
 
 # Copy the code into the container
 COPY . .
 
-## We specify that we now wish to execute any further commands inside our /build/cmd/scem directory
+# Move to the specific directory containing the main code
 WORKDIR /build/cmd/scem
 
-## we run go build to compile the binary executable of our Go program
+# Build the Go executable
 RUN go build -o golang_scem_binary .
 
-# Move to /dist directory as the place for resulting binary folder
+# Move to / (root) directory as the place for resulting binary
 WORKDIR /
 
-# Copy binary from build to main folder
+# Copy binary from build to root folder
 RUN cp /build/cmd/scem/golang_scem_binary .
 
+# Expose necessary ports
 EXPOSE 5000
 EXPOSE 5001
 
+# Define the command to run the application
 CMD ["/golang_scem_binary"]
 
 # # Build a small image

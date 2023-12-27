@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lucthienbinh/golang_scem/internal/model"
+	"github.com/hkm12345123/transport_system/internal/model"
 	"gopkg.in/validator.v2"
 )
 

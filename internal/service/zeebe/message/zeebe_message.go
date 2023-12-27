@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	CommonService "github.com/lucthienbinh/golang_scem/internal/service/common"
+	CommonService "github.com/hkm12345123/transport_system/internal/service/common"
 )
 
 // LongShipFinished send mesage to zeebe engine
