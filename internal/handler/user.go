@@ -3,7 +3,7 @@ package handler
 import (
 	"net/http"
 	"strconv"
-
+	"log"
 	"github.com/gin-gonic/gin"
 	"github.com/hkm12345123/transport_system/internal/model"
 )
@@ -14,6 +14,7 @@ import (
 func ValidateUserAuth(email, password string) (map[string]interface{}, uint, bool) {
 	variables := make(map[string]interface{})
 	userAuth := &model.UserAuthenticate{}
+	log.Print(email,password)
 	if err := db.Where("email = ? AND active = true", email).First(userAuth).Error; err != nil {
 		return nil, 0, false
 	}

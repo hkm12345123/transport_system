@@ -2,7 +2,7 @@ package handler
 
 import (
 	"os"
-
+	"log"
 	"github.com/hkm12345123/transport_system/internal/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
@@ -255,6 +255,7 @@ func createDefaultCustomer() error {
 	if err := db.Create(userAuth).Error; err != nil {
 		return err
 	}
+	log.Print("create auth!")
 	customer := &model.Customer{UserAuthID: userAuth.ID, Name: "Customer One", Age: 18, Phone: 223334444, Gender: "male", Address: "12 Tran Hung Dao, Phuong 1, Quan 5"}
 	if err := db.Create(customer).Error; err != nil {
 		return err

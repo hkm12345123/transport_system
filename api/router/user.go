@@ -15,6 +15,9 @@ func WebUserRoutes(rg *gin.RouterGroup) {
 	customer.PUT("/update/:id", handler.UpdateCustomerHandler)
 	customer.DELETE("/delete/:id", handler.DeleteCustomerHandler)
 
+	customerAuth := rg.Group("/customer-auth")
+	customerAuth.GET("/list", handler.GetCustomerAuthListHandler)
+
 	customerCredit := rg.Group("/customer-credit")
 	customerCredit.GET("/list", handler.GetCustomerCreditListHandler)
 	customerCredit.PUT("/update/validattion/:id", handler.UpdateCustomerCreditValidationHandler)

@@ -21,6 +21,13 @@ func GetCustomerListHandler(c *gin.Context) {
 	return
 }
 
+func GetCustomerAuthListHandler(c *gin.Context) {
+	customersAuth := []model.UserAuthenticate{}
+	db.Order("id asc").Find(&customersAuth)
+	c.JSON(http.StatusOK, gin.H{"customer_auth_list": &customersAuth})
+	return
+}
+
 func getCustomerOrNotFound(c *gin.Context) (*model.Customer, error) {
 	customer := &model.Customer{}
 	if err := db.First(customer, c.Param("id")).Error; err != nil {
