@@ -8,12 +8,12 @@ import (
 
 // UserAuthenticate structure for authentication ONLY
 type UserAuthenticate struct {
-	gorm.Model `json:"-"` //add createat deleteat
-	Email      string     `json:"email"`
-	Password   string     `json:"password"`
-	EmployeeID uint       `json:"emloyee_id"`
-	CustomerID uint       `json:"customer_id"`
-	Active     bool       `gorm:"default:1" json:"active"`
+	gorm.Model `json:"-"`
+	Email      string `json:"email"`
+	Password   string `json:"password"`
+	EmployeeID uint   `json:"emloyee_id"`
+	CustomerID uint   `json:"customer_id"`
+	Active     bool   `gorm:"default:1" json:"active"`
 }
 
 // UserFCMToken structure for Firebase Cloud Messaging

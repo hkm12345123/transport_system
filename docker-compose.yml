@@ -7,8 +7,8 @@ networks:
      config:
        - subnet: "172.20.0.0/16" # Định nghĩa dải địa chỉ IP cho mạng
 volumes:
-#   redis-data:
-#   postgres-data:
+  redis-data:
+  postgres-data:
   golangscem-data:
   zeebe:
   elastic:
@@ -45,6 +45,7 @@ services:
       - scem-net
     volumes:
       - redis-data:/data
+    user: root
   postgres:
     container_name: scem_postgres_docker
     image: postgres:13.1-alpine
@@ -61,14 +62,15 @@ services:
   golang_scem:
     container_name: golang_scem_docker
     # build: .
-    image: golang_scem
+    image: golang_scem:v1
     restart: always
     volumes:
       - golangscem-data:/storage
+      - golangscem-data:/db
     depends_on:
       - zeebe
-    #  - postgres
-    #  - redis
+      - postgres
+      - redis
     ports:
       - '5000:5000'
       - '5001:5001'
@@ -110,7 +112,7 @@ services:
     image: camunda/operate:${CAMUNDA_PLATFORM_VERSION}
     container_name: operate
     ports:
-      - "1502:8080"
+      - "8081:8080"
     environment: # https://docs.camunda.io/docs/self-managed/operate-deployment/configuration/
       - CAMUNDA_OPERATE_ZEEBE_GATEWAYADDRESS=zeebe:26500
       - CAMUNDA_OPERATE_ELASTICSEARCH_URL=http://elasticsearch:9200

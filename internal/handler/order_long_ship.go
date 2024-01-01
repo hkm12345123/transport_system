@@ -50,9 +50,9 @@ func GetLongShipListHandler(c *gin.Context) {
 	}
 
 	transportTypes := []model.TransportType{}
-	db.Where("same_city is ?", false).Order("id asc").Find(&transportTypes)
-
-	longShipTotal := 0
+        db.Where("same_city is ?", false).Order("id asc").Find(&transportTypes)
+	
+        longShipTotal := 0
 	readyTotal := 0
 	availableTotal := 0
 	runningTotal := 0
