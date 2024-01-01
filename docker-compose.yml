@@ -7,8 +7,8 @@ networks:
      config:
        - subnet: "172.20.0.0/16" # Định nghĩa dải địa chỉ IP cho mạng
 volumes:
-  redis-data: 
-  postgres-data: 
+  redis-data:
+  postgres-data:
   golangscem-data:
   zeebe:
   elastic:
@@ -45,6 +45,7 @@ services:
       - scem-net
     volumes:
       - redis-data:/data
+    user: root
   postgres:
     container_name: scem_postgres_docker
     image: postgres:13.1-alpine
@@ -65,6 +66,7 @@ services:
     restart: always
     volumes:
       - golangscem-data:/storage
+      - golangscem-data:/db
     depends_on:
       - zeebe
       - postgres
@@ -156,4 +158,3 @@ services:
       - elastic:/usr/share/elasticsearch/data
     networks:
       - scem-net
-
