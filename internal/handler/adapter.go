@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"os"
 
 	"github.com/hkm12345123/transport_system/internal/model"
@@ -254,6 +255,8 @@ func createDefaultCustomer() error {
 	userAuth := &model.UserAuthenticate{Email: "customer@gmail.com", Password: "12345678"}
 	if err := db.Create(userAuth).Error; err != nil {
 		return err
+	} else {
+		log.Print("thanh cong")
 	}
 	customer := &model.Customer{UserAuthID: userAuth.ID, Name: "Customer One", Age: 18, Phone: 223334444, Gender: "male", Address: "12 Tran Hung Dao, Phuong 1, Quan 5"}
 	if err := db.Create(customer).Error; err != nil {

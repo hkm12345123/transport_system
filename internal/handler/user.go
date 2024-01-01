@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -14,6 +15,7 @@ import (
 func ValidateUserAuth(email, password string) (map[string]interface{}, uint, bool) {
 	variables := make(map[string]interface{})
 	userAuth := &model.UserAuthenticate{}
+	log.Print(email, password)
 	if err := db.Where("email = ? AND active = true", email).First(userAuth).Error; err != nil {
 		return nil, 0, false
 	}
