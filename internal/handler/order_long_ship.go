@@ -3,6 +3,7 @@ package handler
 import (
 	"crypto/rand"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -50,9 +51,9 @@ func GetLongShipListHandler(c *gin.Context) {
 	}
 
 	transportTypes := []model.TransportType{}
-        db.Where("same_city is ?", false).Order("id asc").Find(&transportTypes)
-	
-        longShipTotal := 0
+	db.Where("same_city is ?", false).Order("id asc").Find(&transportTypes)
+
+	longShipTotal := 0
 	readyTotal := 0
 	availableTotal := 0
 	runningTotal := 0
@@ -158,10 +159,12 @@ func CreateLongShipHandler(c *gin.Context) {
 		newQrCode = createTime + "_" + newQrCode + ".jpg"
 		filepath := os.Getenv("QR_CODE_FILE_PATH") + newQrCode
 		if err := qrcode.WriteFile(newQrCode, qrcode.Medium, 256, filepath); err != nil {
+			log.Print("error when create qrcode", err)
 			return err
 		}
 		longShip.LSQrCode = newQrCode
 		if err := db.Create(longShip).Error; err != nil {
+			log.Print("Error when create LongShip in db", err)
 			return err
 		}
 		return nil
@@ -171,6 +174,7 @@ func CreateLongShipHandler(c *gin.Context) {
 	g.Go(func() error {
 		WorkflowKey, WorkflowInstanceKey, err := CommonService.CreateWorkflowLongShipInstanceHandler(longShip.ID)
 		if err != nil {
+			log.Print("Error when create LongShipInstance", err)
 			return err
 		}
 
@@ -179,12 +183,14 @@ func CreateLongShipHandler(c *gin.Context) {
 		longShipWorkflowData.WorkflowKey = WorkflowKey
 		longShipWorkflowData.WorkflowInstanceKey = WorkflowInstanceKey
 		if err := db.Create(longShipWorkflowData).Error; err != nil {
+			log.Print("Error when create longshipworkflow in db", err)
 			return err
 		}
 		return nil
 	})
 
 	if err := g.Wait(); err != nil {
+		log.Print("Error when wait group", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}

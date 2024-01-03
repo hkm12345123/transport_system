@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/hkm12345123/transport_system/internal/model"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/hkm12345123/transport_system/internal/model"
 	"golang.org/x/sync/errgroup"
 	"gopkg.in/validator.v2"
 )
@@ -198,7 +198,7 @@ func calculateTotalPrice(orderInfo *model.OrderInfo) (int64, error) {
 	var totalPrice int64
 	totalPrice = transportType.ShortShipPricePerKm * orderInfo.ShortShipDistance
 	if orderInfo.UseLongShip == true {
-		totalPrice += transportType.LongShipPrice
+		totalPrice += transportType.LongShipPricePerKm
 	}
 	return totalPrice, nil
 }
@@ -207,10 +207,12 @@ func calculateTotalPrice(orderInfo *model.OrderInfo) (int64, error) {
 func CreateOrderInfoHandler(c *gin.Context) {
 	orderInfo := &model.OrderInfo{}
 	if err := c.ShouldBindJSON(&orderInfo); err != nil {
+		log.Print("Error when send request to create order", err)
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
 	}
 	if err := validator.Validate(&orderInfo); err != nil {
+		log.Print("Error when validate request to create order", err)
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
 	}

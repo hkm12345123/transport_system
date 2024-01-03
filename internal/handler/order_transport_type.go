@@ -3,8 +3,8 @@ package handler
 import (
 	"net/http"
 
-	"github.com/hkm12345123/transport_system/internal/model"
 	"github.com/gin-gonic/gin"
+	"github.com/hkm12345123/transport_system/internal/model"
 	"gopkg.in/validator.v2"
 )
 
@@ -74,13 +74,13 @@ func UpdateTransportTypeHandler(c *gin.Context) {
 
 	transportType.ID = getIDFromParam(c)
 	updateValue := map[string]interface{}{
-		"same_city":               transportType.SameCity,
-		"location_one":            transportType.LocationOne,
-		"location_two":            transportType.LocationTwo,
-		"bus_station_from":        transportType.BusStationFrom,
-		"bus_station_to":          transportType.BusStationTo,
+		"same_city":    transportType.SameCity,
+		"location_one": transportType.LocationOne,
+		"location_two": transportType.LocationTwo,
+		// "bus_station_from":        transportType.BusStationFrom,
+		// "bus_station_to":          transportType.BusStationTo,
 		"long_ship_duration":      transportType.LongShipDuration,
-		"long_ship_price":         transportType.LongShipPrice,
+		"long_ship_price":         transportType.LongShipPricePerKm,
 		"short_ship_price_per_km": transportType.ShortShipPricePerKm,
 	}
 	if err = db.Model(&transportType).Updates(updateValue).Error; err != nil {

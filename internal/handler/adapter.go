@@ -312,19 +312,35 @@ func createCustomerCredit() error {
 }
 
 func createTransportType() error {
-	transportType := &model.TransportType{SameCity: true, LocationOne: "HCM", ShortShipPricePerKm: 30000}
+	transportType := &model.TransportType{SameCity: true, LocationOne: "Hà Nội", ShortShipPricePerKm: 30000}
 	if err := db.Create(transportType).Error; err != nil {
 		return err
 	}
-	transportType = &model.TransportType{SameCity: true, LocationOne: "HCM", ShortShipPricePerKm: 26000}
+	transportType = &model.TransportType{SameCity: true, LocationOne: "Hà Nội", ShortShipPricePerKm: 26000}
 	if err := db.Create(transportType).Error; err != nil {
 		return err
 	}
-	transportType = &model.TransportType{LocationOne: "HCM", LocationTwo: "DL", LongShipDuration: 86400, LongShipPrice: 100000, BusStationFrom: "231-233 Le Hong Phong", BusStationTo: "695-697 Quoc lo 20, Thi tran Lien Nghia, Huyen Duc Trong, Lam Dong", ShortShipPricePerKm: 30000}
+	transportType = &model.TransportType{LocationOne: "Hà Nội", LocationTwo: "Tây Bắc Bộ", LongShipDuration: 172800, ServiceType: "Normal", LongShipPricePerKm: 5000, ShortShipPricePerKm: 26000}
 	if err := db.Create(transportType).Error; err != nil {
 		return err
 	}
-	transportType = &model.TransportType{LocationOne: "HCM", LocationTwo: "VT", LongShipDuration: 172800, LongShipPrice: 120000, BusStationFrom: "231-233 Le Hong Phong", BusStationTo: "192 Nam Ky Khoi Nghia, Phuong Thang Tam", ShortShipPricePerKm: 26000}
+	transportType = &model.TransportType{LocationOne: "Hà Nội", LocationTwo: "Đông Bắc Bộ", LongShipDuration: 86400, ServiceType: "Normal", LongShipPricePerKm: 6000, ShortShipPricePerKm: 30000}
+	if err := db.Create(transportType).Error; err != nil {
+		return err
+	}
+	transportType = &model.TransportType{LocationOne: "Hà Nội", LocationTwo: "Khu vực trung tâm Bắc Bộ", LongShipDuration: 172800, ServiceType: "Express", LongShipPricePerKm: 8000, ShortShipPricePerKm: 26000}
+	if err := db.Create(transportType).Error; err != nil {
+		return err
+	}
+	transportType = &model.TransportType{LocationOne: "Hà Nội", LocationTwo: "Khu vực trung tâm Bắc Bộ", LongShipDuration: 172800, ServiceType: "Normal", LongShipPricePerKm: 6500, ShortShipPricePerKm: 26000}
+	if err := db.Create(transportType).Error; err != nil {
+		return err
+	}
+	transportType = &model.TransportType{LocationOne: "Hà Nội", LocationTwo: "Bắc Trung Bộ", LongShipDuration: 172800, ServiceType: "Normal", LongShipPricePerKm: 5500, ShortShipPricePerKm: 26000}
+	if err := db.Create(transportType).Error; err != nil {
+		return err
+	}
+	transportType = &model.TransportType{LocationOne: "Hà Nội", LocationTwo: "Duyên Hải Miền Trung", LongShipDuration: 172800, ServiceType: "Normal", LongShipPricePerKm: 5700, ShortShipPricePerKm: 26000}
 	if err := db.Create(transportType).Error; err != nil {
 		return err
 	}
@@ -344,23 +360,23 @@ func createLongShip() error {
 }
 
 func createDeliveryLocation() error {
-	location := &model.DeliveryLocation{City: "HCM", District: "1"}
+	location := &model.DeliveryLocation{City: "Hà Nội", District: "1"}
 	if err := db.Create(location).Error; err != nil {
 		return err
 	}
-	location = &model.DeliveryLocation{City: "HCM", District: "2"}
+	location = &model.DeliveryLocation{City: "Hà Nội", District: "2"}
 	if err := db.Create(location).Error; err != nil {
 		return err
 	}
-	location = &model.DeliveryLocation{City: "HCM", District: "3"}
+	location = &model.DeliveryLocation{City: "Hà Nội", District: "3"}
 	if err := db.Create(location).Error; err != nil {
 		return err
 	}
-	location = &model.DeliveryLocation{City: "HCM", District: "Tan Binh"}
+	location = &model.DeliveryLocation{City: "Hà Nội", District: "Tan Binh"}
 	if err := db.Create(location).Error; err != nil {
 		return err
 	}
-	location = &model.DeliveryLocation{City: "HCM", District: "Phu Nhuan"}
+	location = &model.DeliveryLocation{City: "Hà Nội", District: "Phu Nhuan"}
 	if err := db.Create(location).Error; err != nil {
 		return err
 	}
@@ -399,8 +415,8 @@ func createExampleOrder() error {
 	orderInfo := &model.OrderInfo{
 		Weight: 2, Volume: 10, Type: "Normal", Image: "box.jpg",
 		CustomerSendID: 1, EmplCreateID: 2,
-		Sender:           "Customer One - 269 Ngo Quyen, Quan 5, HCM - 5676765678",
-		Receiver:         "Mai Thi Cuc - 38 Tran Hung Dao, Quan 1, HCM - 6765677867",
+		Sender:           "Customer One - 269 Ngo Quyen, Quan 5, Hà Nội - 5676765678",
+		Receiver:         "Mai Thi Cuc - 38 Tran Hung Dao, Quan 1, Hà Nội - 6765677867",
 		Detail:           "May vi tinh ca nhan va ban phim may tinh",
 		OrderShortShipID: 1, TransportTypeID: 1, ShortShipDistance: 20,
 		TotalPrice: 200000, Note: "Giao hang vao buoi sang",
@@ -444,8 +460,8 @@ func createExampleOrderLongShip() error {
 func createExampleOrderShortShip() error {
 	orderShortShip := &model.OrderShortShip{
 		OrderID: 1, ShipperID: 3, CustomerSendID: 1, OSSQrCode: "1611465837_1e708c0f8e9a0213.jpg",
-		Sender:   "Customer One - 269 Ngo Quyen, Quan 5, HCM - 5676765678",
-		Receiver: "Mai Thi Cuc - 38 Tran Hung Dao, Quan 1, HCM - 6765677867",
+		Sender:   "Customer One - 269 Ngo Quyen, Quan 5, Hà Nội - 5676765678",
+		Receiver: "Mai Thi Cuc - 38 Tran Hung Dao, Quan 1, Hà Nội - 6765677867",
 	}
 	if err := db.Create(orderShortShip).Error; err != nil {
 		return err

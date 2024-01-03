@@ -21,7 +21,7 @@ type OrderInfo struct {
 	// Delivery information
 	Sender          string `json:"sender" validate:"nonzero"`
 	Receiver        string `json:"receiver" validate:"nonzero"`
-	TransportTypeID uint   `json:"transport_type_id" validate:"nonzero"`
+	TransportTypeID uint   `json:"transport_type_id"`
 	Detail          string `json:"detail" validate:"nonzero"`
 	Note            string `json:"note"`
 	TotalPrice      int64  `json:"total_price"`
@@ -39,14 +39,15 @@ type OrderInfo struct {
 
 // TransportType structure
 type TransportType struct {
-	ID                  uint   `gorm:"primary_key;<-:false" json:"id"`
-	SameCity            bool   `json:"same_city"`
-	LocationOne         string `json:"location_one" validate:"nonzero"`
-	LocationTwo         string `json:"location_two"`
-	BusStationFrom      string `json:"bus_station_from"`
-	BusStationTo        string `json:"bus_station_to"`
+	ID          uint   `gorm:"primary_key;<-:false" json:"id"`
+	SameCity    bool   `json:"same_city"`
+	LocationOne string `json:"location_one" validate:"nonzero"`
+	LocationTwo string `json:"location_two"`
+	// BusStationFrom      string `json:"bus_station_from"`
+	// BusStationTo        string `json:"bus_station_to"`
 	LongShipDuration    int64  `json:"long_ship_duration"`
-	LongShipPrice       int64  `json:"long_ship_price"`
+	LongShipPricePerKm  int64  `json:"long_ship_price"`
+	ServiceType         string `json:"service_type"`
 	ShortShipPricePerKm int64  `json:"short_ship_price_per_km" validate:"nonzero"`
 }
 
